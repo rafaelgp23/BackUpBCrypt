@@ -16,13 +16,16 @@ Desenvolvido usando:
 
 -biblioteca Botan
 
+
 Primeiramente, o programa precisa da biblioteca Botan instalada para executar. Execute o script "install-botan.sh" para que ele possa funcionar.
 
 Para isso, vá até a pasta deste repositório pelo terminal e realize os seguintes comandos:
 
+
 $ chmod +x install-botan.sh
 
 $ sudo ./install-botan.sh
+
 
 A senha está definida como "maurilio", e é salva dentro do código através de um hash gerado pelo algoritmo bcrypt.
 
