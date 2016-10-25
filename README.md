@@ -9,8 +9,11 @@ GitHub: https://github.com/rafaelgp23/BackUpBCrypt
 Desenvolvido usando:
 
 -SO Ubuntu 14.04
+
 -IDE QTCreator
+
 -QT Framework
+
 -biblioteca Botan
 
 Primeiramente, o programa precisa da biblioteca Botan instalada para executar. Execute o script "install-botan.sh" para que ele possa funcionar.
