@@ -1,5 +1,4 @@
 Gustavo Lopes 20961
-
 Rafael Guimarães de Paula 21156
 
 GitHub: https://github.com/rafaelgp23/BackUpBCrypt

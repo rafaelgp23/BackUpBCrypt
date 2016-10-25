@@ -1,5 +1,6 @@
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
+#include "iostream"
 
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
@@ -66,15 +67,20 @@ void MainWindow::on_pushButton_Encriptar_clicked()
         return;
     }
 
-    QString chave = getChave();
-    if(chave.isEmpty()) return;
+    if(QFileInfo(file).suffix() != "txt"){
+        QMessageBox::information(0,"Erro","Formato de arquivo invalido!");
+        return;
+    }
 
     QString backupDir = ui->lineEdit_AbrirDir->text();
     QDir dir(backupDir);
-    if (!dir.exists()){
+    if (!dir.exists() || backupDir.isEmpty()){
         QMessageBox::information(0,"BCrypt","Pasta de backup nao encontrada!");
         return;
     }
+
+    QString chave = getChave();
+    if(chave.isEmpty()) return;
 
     system(QString(QString("") + "(echo " + chave + " && sleep 0 && echo " + chave + ") | bcrypt " + file.fileName()).toStdString().c_str());
     chave.clear();
@@ -109,7 +115,7 @@ QString MainWindow::getChave()
 void MainWindow::on_pushButton_Desencript_clicked()
 {
     QDir dir(ui->lineEdit_AbrirDir->text());
-    if (!dir.exists()){
+    if (!dir.exists() || ui->lineEdit_AbrirDir->text().isEmpty()){
         QMessageBox::information(0,"BCrypt","Pasta de backup nao encontrada!");
         return;
     }
@@ -141,7 +147,7 @@ void MainWindow::on_pushButton_AbrirDir_clicked()
 void MainWindow::on_lineEdit_AbrirDir_returnPressed()
 {
     QDir dir(ui->lineEdit_AbrirDir->text());
-    if (!dir.exists()){
+    if (!dir.exists() || ui->lineEdit_AbrirDir->text().isEmpty()){
         QMessageBox::information(0,"BCrypt","Diretorio invalido!");
     }
     else

@@ -6,10 +6,15 @@ if [ "$(id -u)" != "0" ]; then
 fi
 
 cd "${0%/*}"
-unzip botan.zip
+echo A | unzip botan.zip
 cd botan
 ./configure.py
 make
 LD_LIBRARY_PATH=. ./botan-test
 ./botan-test
 sudo make install
+echo "include /usr/local/lib" | sudo tee -a /etc/ld.so.conf
+sudo ldconfig
+cd ..
+sudo rm -rf botan
+echo "install-botan script has finished with success"
